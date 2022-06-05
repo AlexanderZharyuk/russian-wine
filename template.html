@@ -114,31 +114,27 @@
           </div>
         </div>
         <div class="row">
-          {% for drink_type in drinks %}
-          <div class="col-12 section-title text-center mb-5">
-            <h2 class="d-block">{{ drink_type }}</h2>
-          </div>
-            {% for drink in drinks[drink_type] %}
-              <div class="col-lg-4 mb-5 col-md-6">
+          {% for drink_type, drink_info in drinks.items() %}
+            <div class="col-12 section-title text-center mb-5">
+              <h2 class="d-block">{{ drink_type }}</h2>
+            </div>
+            {% for drink in drink_info %}
+            <div class="col-lg-4 mb-5 col-md-6">
               <div class="wine_v_1 text-center pb-4 pt-5">
-                {% if drink.Акция == '' %}
-                <img src="./images/{{ drink.Картинка }}" alt="Image" class="img-fluid">
-                {% else %}
-                <img src="./images/{{ drink.Картинка }}" alt="Image" class="img-fluid">
-                <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
+              <img src="./images/{{ drink.Картинка }}" alt="Image" class="img-fluid">
+                {% if drink.Акция %}
+                  <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
                 {% endif %}
                 <div>
                   <h3 class="heading mt-3 mb-3 text-dark">{{ drink.Название }}</h3>
-                  {% if drink.Сорт == '' %}
-                    <p>
-                      <span class="price">{{ drink.Цена }}р.</span>
-                    </p>
-                  {% else %}
+                  {% if drink.Сорт %}
                     <p>
                       Сорт винограда - {{ drink.Сорт }}<br>
-                      <span class="price">{{ drink.Цена }}р.</span>
                     </p>
                   {% endif %}
+                  <p>
+                    <span class="price">{{ drink.Цена }}р.</span>
+                  </p>
                 </div>
               </div>
             </div>
